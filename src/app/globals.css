@@ -1,33 +1,46 @@
+/*
+导入Tailwind CSS的基础样式、组件样式和工具类样式，这是使用Tailwind CSS框架时的标准做法
+*/
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/*
+:root 是一种CSS伪类选择器，用来选中文档树的根元素。对于HTML文档，根元素通常是 <html> 标签。
+ */
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+    /*
+    声明变量，冒号':'左边是变量名，后边是变量的值。变量名必须以两个连字符'--'作为前缀，用于和标准css属性区分
+     */
+    --foreground-rgb: 0, 0, 0; /* 黑色 */
+    --background-start-rgb: 214, 219, 220; /* 浅灰色 */
+    --background-end-rgb: 255, 255, 255; /* 白色 */
 }
 
+/* 使用@media查询检测用户的系统是否偏好深色模式。如果是深色模式，则将CSS变量修改 */
 @media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+    :root {
+        --foreground-rgb: 255, 255, 255;
+        --background-start-rgb: 0, 0, 0;
+        --background-end-rgb: 0, 0, 0;
+    }
 }
 
+/* 这段代码为body元素设置了文字颜色和背景 */
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+    /* 文字颜色。var(--foreground-rgb)表示使用变量--foreground-rgb */
+    color: rgb(var(--foreground-rgb));
+    /* background属性使用一个渐变背景，从透明色transparent，过渡到--background-end-rgb，并且叠加在--background-start-rgb上。 */
+    background: linear-gradient(
+            to bottom,
+            transparent,
+            rgb(var(--background-end-rgb))
+    ) rgb(var(--background-start-rgb));
 }
 
+/* @layer表示在utilities中，自定义一个样式text-balance */
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+    .text-balance {
+        text-wrap: balance;
+    }
 }
